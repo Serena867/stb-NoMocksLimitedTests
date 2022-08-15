@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:split_the_bill/domain_layer/factories/IEntityFactory.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/constants.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/home_screen.dart';
 import '../../../dependency_injection/injection.dart';
 import '../dialogs/add_user_dialog.dart';
 import '../screens/users_screen.dart';
 import '../screens/new_bill_screen.dart';
 
-//TODO: Add homescreen button
+//TODO: Fix alignment as icons are not properly aligned.
 
 BottomAppBar bottomAppBar(BuildContext context, bool isHomeScreen) {
   return BottomAppBar(
@@ -26,9 +28,9 @@ BottomAppBar bottomAppBar(BuildContext context, bool isHomeScreen) {
               child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    splashColor: const Color(0xFF00ff15),
+                    splashColor: AppColours.TAP_BUTTON_GREEN,
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NewBillScreen(billController: getIt<BillController>(), entityFactory: getIt<IEntityFactory>()))),
+                        builder: (context) => HomeScreen(billController: getIt<BillController>()))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const <Widget>[
@@ -52,7 +54,7 @@ BottomAppBar bottomAppBar(BuildContext context, bool isHomeScreen) {
               child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    splashColor: const Color(0xFF00ff15),
+                    splashColor: AppColours.TAP_BUTTON_GREEN,
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const UsersScreen())),
                     child: Column(
@@ -78,7 +80,7 @@ BottomAppBar bottomAppBar(BuildContext context, bool isHomeScreen) {
               child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    splashColor: const Color(0xFF00ff15),
+                    splashColor: AppColours.TAP_BUTTON_GREEN,
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const UsersScreen()));
@@ -111,7 +113,7 @@ BottomAppBar bottomAppBar(BuildContext context, bool isHomeScreen) {
               child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    splashColor: const Color(0xFF00ff15),
+                    splashColor: AppColours.TAP_BUTTON_GREEN,
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => NewBillScreen(billController: getIt<BillController>(), entityFactory: getIt<IEntityFactory>()))),
                     child: Column(

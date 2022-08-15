@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/constants.dart';
 import '../../../dependency_injection/injection.dart';
 import '../../controllers/bill/bill_search_delegate.dart';
 import '../screens/home_screen.dart';
@@ -13,7 +14,7 @@ PreferredSizeWidget generalAppBar(BuildContext context, bool isLeading) {
     automaticallyImplyLeading: false,
     systemOverlayStyle:
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-    backgroundColor: const Color(0xFF6EC6CA),
+    backgroundColor: AppColours.STB_BLUE,
     elevation: 4,
     centerTitle: true,
     title: const Text(

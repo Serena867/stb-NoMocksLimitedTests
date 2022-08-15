@@ -31,26 +31,56 @@ import 'domain_layer/value_objects/user/user_last_name.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
+  UserController userController =
+      UserController(userService: getIt<UserService>());
+  BillController billController =
+      BillController(billService: getIt<BillService>());
 
   User user1 = User(
       userID: const Uuid().v1(),
       firstName: FirstName.create('Benjamin'),
       lastName: LastName.create('Sisko'),
       email: Email.create('abc123@gmail.com'));
-  UserController controller = UserController(userService: getIt<UserService>());
-  await controller.addUser(user1);
+  await userController.addUser(user1);
 
   User user2 = User(
       userID: const Uuid().v1(),
       firstName: FirstName.create('Julian'),
       lastName: LastName.create('Bashir'),
       email: Email.create('xyz987@gmail.com'));
-  await controller.addUser(user2);
+  await userController.addUser(user2);
+
+  User user3 = User(
+      userID: const Uuid().v1(),
+      firstName: FirstName.create('Clark'),
+      lastName: LastName.create('Kent'),
+      email: Email.create('Superman@gmail.com'));
+  await userController.addUser(user3);
+
+  User user4 = User(
+      userID: const Uuid().v1(),
+      firstName: FirstName.create('Bruce'),
+      lastName: LastName.create('Wayne'),
+      email: Email.create('Not.Batman@gmail.com'));
+  await userController.addUser(user4);
 
   Bill bill1 = Bill(
       billID: const Uuid().v1(),
-      billName: BillName.create('bill1'),
+      billName: BillName.create('The Avengers: End Game'),
       billType: BillType.create('\u{1F39E}  ' 'Entertainment'),
+      date: BillDate.create('2022-01-02'),
+      extraFees: ExtraFees.create(tip: 0.0),
+      discount: Discount.create(),
+      tax: Tax.create(tax: 7.0),
+      items: {},
+      users: [],
+      splitEqually: false);
+  await billController.addBill(bill1);
+
+  Bill bill2 = Bill(
+      billID: const Uuid().v1(),
+      billName: BillName.create('Legends'),
+      billType: BillType.create('\u{1F354}  ' 'Restaurant'),
       date: BillDate.create('2022-01-02'),
       extraFees: ExtraFees.create(tip: 5.0),
       discount: Discount.create(),
@@ -58,9 +88,20 @@ void main() async {
       items: {},
       users: [],
       splitEqually: false);
-  BillController billController =
-      BillController(billService: getIt<BillService>());
-  await billController.addBill(bill1);
+  await billController.addBill(bill2);
+
+  Bill bill3 = Bill(
+      billID: const Uuid().v1(),
+      billName: BillName.create('Hawaiian Vacation'),
+      billType: BillType.create('\u{1F6E9}  ' 'Travel'),
+      date: BillDate.create('2022-01-02'),
+      extraFees: ExtraFees.create(tip: 0.0),
+      discount: Discount.create(),
+      tax: Tax.create(tax: 7.0),
+      items: {},
+      users: [],
+      splitEqually: false);
+  await billController.addBill(bill3);
 
   Item item1 = Item(
       itemID: const Uuid().v1(),

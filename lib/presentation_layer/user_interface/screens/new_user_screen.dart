@@ -3,6 +3,7 @@ import 'package:split_the_bill/domain_layer/factories/IEntityFactory.dart';
 import 'package:split_the_bill/domain_layer/value_objects/user/user_last_name.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/constants.dart';
 import 'package:uuid/uuid.dart';
 import '../../../dependency_injection/injection.dart';
 import '../../../domain_layer/entities/user.dart';
@@ -35,7 +36,7 @@ class _NewUserScreenState extends State<NewUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF202120),
+      backgroundColor: AppColours.STB_BLUE,
       extendBodyBehindAppBar: true,
       //appBar: appBar(context, false),
       body: _buildBody(),
@@ -176,20 +177,15 @@ class _NewUserScreenState extends State<NewUserScreen> {
           : _firstNameIsValid = true;
     });
 
-    String newUuid = const Uuid().v1();
-
-    User user = widget.entityFactory.newUser(userID: newUuid,
+    User user = widget.entityFactory.newUser(userID: const Uuid().v1(),
         firstName: FirstName.create(_userFirstNameController.text),
         lastName: LastName.create(_userLastNameController.text),
         email: Email.create(_userEmailController.text));
     if (_firstNameIsValid == true) {
-      print('These two printed in new_user_screen');
-      print(widget.userController);
-      print(user.firstName);
       var result = await widget.userController.addUser(user);
       if (result > 0) {
         _showSuccessfulUserCreation();
-        Navigator.of(context)
+        Navigator.of(context) //TODO: Adjust MaterialPageRoute so this isn't at the bottom of the nav stack on initial user creation
             .push(MaterialPageRoute(builder: (context) =>
             HomeScreen(billController: getIt<BillController>(),)));
       }

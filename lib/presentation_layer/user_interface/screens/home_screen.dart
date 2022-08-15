@@ -192,7 +192,7 @@ class _NarrowLayoutState extends State<NarrowLayout> {
                         ),
                         subtitle: Text(
                           'Date: ${snapshot.data[index].date}',
-                          style: TextStyle(fontSize: Get.width * 0.018),
+                          style: TextStyle(fontSize: Get.width * 0.028),
                         ),
                         trailing: IconButton(
                             splashColor: Colors.red,

@@ -185,44 +185,60 @@ class _NarrowLayoutState extends State<NarrowLayout> {
       ]),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasData) {
-          return Center(
-            child: ListView.builder(
-              itemCount: snapshot.data![1].length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(0.0),
-                  child: Card(
-                    elevation: 8,
-                    child: ListTile(
-                      onTap: () {},
-                      leading: Text(
-                        snapshot.data![1][index].billType.billType.substring(
-                            0,
+          return Column(
+            children: <Widget>[
+              Container(height: 8),
+              Text(
+                'Bills with ' +
+                    snapshot.data![0].firstName.firstName +
+                    ' ' +
+                    snapshot.data![0].lastName.lastName,
+                style: TextStyle(fontSize: 20),
+              ),
+              Container(height: 8),
+              Center(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data![1].length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Card(
+                        elevation: 8,
+                        child: ListTile(
+                          onTap: () {},
+                          leading: Text(
                             snapshot.data![1][index].billType.billType
-                                .indexOf(' ')),
-                        style: TextStyle(fontSize: Get.width * 0.045),
-                      ),
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              snapshot.data![1][index].billName.billName
-                                  .toString(),
-                              style: TextStyle(fontSize: Get.width * 0.0375),
-                            ),
+                                .substring(
+                                    0,
+                                    snapshot.data![1][index].billType.billType
+                                        .indexOf(' ')),
+                            style: TextStyle(fontSize: Get.width * 0.045),
                           ),
-                        ],
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  snapshot.data![1][index].billName.billName
+                                      .toString(),
+                                  style:
+                                      TextStyle(fontSize: Get.width * 0.0375),
+                                ),
+                              ),
+                            ],
+                          ),
+                          subtitle: Text(
+                            'Date: ${snapshot.data![1][index].date.billDate}',
+                            style: TextStyle(fontSize: Get.width * 0.018),
+                          ),
+                        ),
                       ),
-                      subtitle: Text(
-                        'Date: ${snapshot.data![1][index].date.billDate}',
-                        style: TextStyle(fontSize: Get.width * 0.018),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         } else {
           return const CircularProgressIndicator();
