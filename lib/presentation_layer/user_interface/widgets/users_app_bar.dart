@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/test_home_screen.dart';
 import '../../../dependency_injection/injection.dart';
 import '../../controllers/user/user_search_delegate.dart';
 import '../screens/home_screen.dart';
@@ -39,7 +40,7 @@ PreferredSizeWidget userAppBar(BuildContext context, bool isLeading) {
         ? ElevatedButton(
       onPressed: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (context) =>
-              HomeScreen(billController: getIt<BillController>()))),
+              TestHomeScreen(screenIndex: 0))),
       style: ElevatedButton.styleFrom(
         primary: Colors.transparent,
         elevation: 0.0,

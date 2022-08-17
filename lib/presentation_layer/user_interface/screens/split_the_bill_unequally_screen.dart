@@ -13,6 +13,7 @@ import '../../../domain_layer/entities/user.dart';
 import '../dialogs/add_item_dialog.dart';
 import '../dialogs/user_selection_dialog.dart';
 import '../widgets/general_app_bar.dart';
+import '../widgets/home_app_bar.dart';
 
 //TODO: Completely rebuild the way this is displayed as it looks horrible
 
@@ -38,7 +39,7 @@ class _SplitTheBillUnequallyScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: generalAppBar(context, true),
+      appBar: generalAppBar(context),
       body: _BuildBody(
           billID: widget.billInputID,
           billController: getIt<BillController>(),

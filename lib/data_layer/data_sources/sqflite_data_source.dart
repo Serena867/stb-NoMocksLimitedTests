@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:split_the_bill/data_layer/models/item_dto.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/bill_dto.dart';
+import '../models/bill_group_dto.dart';
 import '../models/user_dto.dart';
 import 'IDatasource.dart';
 
@@ -152,4 +153,43 @@ class SqfliteDatasource implements IDatasource {
     return await _database
         .rawDelete('${'DELETE FROM users WHERE userID' '=\'' + userID}\'');
   }
+
+  @override
+  addGroup(BillGroupDTO groupModel) async {
+    return await _database.insert('groups', groupModel.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  @override
+  Future<List<BillGroupDTO>> readAllGroups() async {
+    List<BillGroupDTO> groups = [];
+    var maps = await _database.query('groups');
+    if (maps.isEmpty) {
+      return [];
+    }
+    for (var data in maps) {
+      BillGroupDTO group = BillGroupDTO.fromJson(data);
+      groups.add(group);
+    }
+    return groups;
+  }
+
+  @override
+  Future<BillGroupDTO> readGroupById(groupID) async {
+    var maps =
+    await _database.query('groups', where: 'groupID=?', whereArgs: [groupID]);
+    return BillGroupDTO.fromJson(maps.first);
+  }
+  @override
+  updateGroup(BillGroupDTO groupModel) async {
+    return await _database.update('groups', groupModel.toJson(),
+        where: 'groupID=?', whereArgs: [groupModel.toJson()['groupID']]);
+  }
+
+  @override
+  deleteGroup(groupID) async {
+    return await _database
+        .rawDelete('${'DELETE FROM groups WHERE groupID' '=\'' + groupID}\'');
+  }
+
+
 }

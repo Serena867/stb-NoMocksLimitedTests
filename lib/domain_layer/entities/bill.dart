@@ -118,7 +118,7 @@ class Bill {
     final copy = users;
     copy.isNotEmpty && copy.contains(user)
         ? copy.remove(user)
-        : throw DomainException("Error: User ID not found.");
+        : throw DomainException("Error: User not found. Unable to remove user");
     return Bill(
         billID: billID,
         billName: billName,

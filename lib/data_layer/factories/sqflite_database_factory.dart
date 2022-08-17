@@ -16,6 +16,7 @@ class SqfliteDatabaseFactory {
     await _createBillTable(database);
     await _createUserTable(database);
     await _createItemTable(database);
+    await _createGroupsTable(database);
   }
 
   Future<void> _upgradeDatabase(Database database, int oldVersion, int newVersion) async {
@@ -47,5 +48,14 @@ class SqfliteDatabaseFactory {
         )
         .then((_) => print('Creating items table...'))
         .catchError((e) => print('Failure creating item table: $e'));
+  }
+
+  _createGroupsTable(database) async {
+    await database
+        .execute(
+      """CREATE TABLE groups(groupID TEXT PRIMARY KEY, groupName TEXT, bills TEXT)""",
+    )
+        .then((_) => print('Creating groups table...'))
+        .catchError((e) => print('Failed to create groups table: $e'));
   }
 }

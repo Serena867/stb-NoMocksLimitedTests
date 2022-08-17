@@ -15,6 +15,7 @@ import '../../../domain_layer/value_objects/bill/bill_tax.dart';
 import '../../../domain_layer/value_objects/bill/bill_type.dart';
 import '../../animations/animated_toggle.dart';
 import '../widgets/general_app_bar.dart';
+import '../widgets/home_app_bar.dart';
 
 //TODO: The entirety of the split equally pages and functionally needs to be redone.
 //TODO: Adjust font sizes, page aesthetics, etc
@@ -63,7 +64,7 @@ class _NewBillScreenState extends State<NewBillScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: false,
-      appBar: generalAppBar(context, true),
+      appBar: generalAppBar(context),
       body: _buildBody(),
     );
   }

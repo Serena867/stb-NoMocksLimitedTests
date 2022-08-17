@@ -15,6 +15,7 @@ import 'package:split_the_bill/presentation_layer/controllers/item/item_controll
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/home_screen.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/new_user_screen.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/test_home_screen.dart';
 import 'package:uuid/uuid.dart';
 import 'dependency_injection/injection.dart';
 import 'domain_layer/entities/user.dart';
@@ -27,6 +28,9 @@ import 'domain_layer/value_objects/item/item_name.dart';
 import 'domain_layer/value_objects/user/user_email.dart';
 import 'domain_layer/value_objects/user/user_first_name.dart';
 import 'domain_layer/value_objects/user/user_last_name.dart';
+
+//TODO: Groups, who paid, who owes, email notifications
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,7 +77,7 @@ void main() async {
       discount: Discount.create(),
       tax: Tax.create(tax: 7.0),
       items: {},
-      users: [],
+      users: [user1, user4],
       splitEqually: false);
   await billController.addBill(bill1);
 
@@ -86,7 +90,7 @@ void main() async {
       discount: Discount.create(),
       tax: Tax.create(tax: 7.0),
       items: {},
-      users: [],
+      users: [user1, user2, user3],
       splitEqually: false);
   await billController.addBill(bill2);
 
@@ -99,7 +103,7 @@ void main() async {
       discount: Discount.create(),
       tax: Tax.create(tax: 7.0),
       items: {},
-      users: [],
+      users: [user3, user4],
       splitEqually: false);
   await billController.addBill(bill3);
 
@@ -140,10 +144,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return userExists == true
-        ? MaterialApp(
+        ? const MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Split the bill',
-            home: HomeScreen(billController: getIt<BillController>()),
+            home: TestHomeScreen(screenIndex: 0),
+            //home: HomeScreen(billController: getIt<BillController>()),
           )
         : MaterialApp(
             debugShowCheckedModeBanner: false,

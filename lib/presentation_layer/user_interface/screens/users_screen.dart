@@ -35,12 +35,6 @@ class _UsersScreenState extends State<UsersScreen> {
           return NarrowLayout(userController: getIt<UserController>());
         }
       }),
-      bottomNavigationBar: bottomAppBar(context, false),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add_a_photo),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }

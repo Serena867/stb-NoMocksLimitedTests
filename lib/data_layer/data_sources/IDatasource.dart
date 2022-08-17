@@ -1,4 +1,5 @@
 import '../models/bill_dto.dart';
+import '../models/bill_group_dto.dart';
 import '../models/item_dto.dart';
 import '../models/user_dto.dart';
 
@@ -20,4 +21,9 @@ abstract class IDatasource{
   Future<UserDTO> readUserById(userID);
   updateUser(UserDTO userModel);
   deleteUser(userID);
+  addGroup(BillGroupDTO groupModel);
+  Future<List<BillGroupDTO>> readAllGroups();
+  Future<BillGroupDTO> readGroupById(groupID);
+  updateGroup(BillGroupDTO groupModel);
+  deleteGroup(groupID);
 }

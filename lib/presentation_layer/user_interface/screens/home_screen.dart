@@ -2,12 +2,19 @@ import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/settings.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/split_the_bill_unequally_screen.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/users_screen.dart';
 import '../../../dependency_injection/injection.dart';
 import '../../../domain_layer/entities/bill.dart';
+import '../../../domain_layer/factories/IEntityFactory.dart';
 import '../dialogs/delete_bill_dialog.dart';
-import '../widgets/general_app_bar.dart';
+import '../widgets/home_app_bar.dart';
 import '../widgets/bottom_app_bar.dart';
+import 'groups_screen.dart';
+import 'new_bill_screen.dart';
+
+//TODO: Adjust layouts for mobile, tablet, and monitors (Microsoft standards for responsive design???)
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -21,19 +28,21 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   BillController? _billController;
+  late TabController tabController;
 
   @override
   void initState() {
-    super.initState();
     _billController = widget.billController;
+    tabController = TabController(length: 2, vsync: this);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: generalAppBar(context, false),
+      appBar: homeAppBar(context, false, tabController),
       body: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth > 400) {
           return WideLayout(billController: _billController!);
@@ -43,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
       }),
-      bottomNavigationBar: bottomAppBar(context, true),
       /*
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

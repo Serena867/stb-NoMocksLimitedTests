@@ -12,7 +12,7 @@ import '../../controllers/item/item_controller.dart';
 import '../../controllers/user/user_controller.dart';
 import '../dialogs/add_item_dialog.dart';
 import '../dialogs/user_selection_dialog.dart';
-import '../widgets/general_app_bar.dart';
+import '../widgets/home_app_bar.dart';
 
 //TODO: This page is currently just a duplicate of split unequally page. Adjust.
 
@@ -37,7 +37,7 @@ class _SplitTheBillEquallyScreenState extends State<SplitTheBillEquallyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: generalAppBar(context, true),
+      appBar: homeAppBar(context, true, null),
       body: _BuildBody(
           billID: widget.billInputID,
           billController: getIt<BillController>(),

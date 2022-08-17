@@ -38,7 +38,7 @@ class _IndividualUserScreenState extends State<IndividualUserScreen> {
               billUserController: getIt<BillUserController>());
         }
       }),
-      bottomNavigationBar: bottomAppBar(context, false),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
@@ -206,7 +206,12 @@ class _NarrowLayoutState extends State<NarrowLayout> {
                       child: Card(
                         elevation: 8,
                         child: ListTile(
-                          onTap: () {},
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SplitTheBillUnequallyScreen(
+                                          billInputID: snapshot
+                                              .data![1][index].billID))),
                           leading: Text(
                             snapshot.data![1][index].billType.billType
                                 .substring(
