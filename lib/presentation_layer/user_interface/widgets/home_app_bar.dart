@@ -8,7 +8,7 @@ import '../screens/home_screen.dart';
 
 //TODO: Adjust back button so it goes back and not home. Adjust navigator routing
 
-PreferredSizeWidget homeAppBar(BuildContext context, bool isLeading, TabController? tabController) {
+PreferredSizeWidget homeAppBar(BuildContext context, TabController? tabController) {
   return AppBar(
     automaticallyImplyLeading: false,
     systemOverlayStyle:
@@ -51,12 +51,11 @@ PreferredSizeWidget homeAppBar(BuildContext context, bool isLeading, TabControll
         splashColor: Colors.blue,
       ),
     ],
-    leading: isLeading
-        ? ElevatedButton(
+    leading: ElevatedButton(
             //TODO: Adjust navigation (probably with pushReplacement)
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    HomeScreen(billController: getIt<BillController>()))),
+                    HomeScreen())),
             style: ElevatedButton.styleFrom(
               primary: Colors.transparent,
               elevation: 0.0,
@@ -65,8 +64,7 @@ PreferredSizeWidget homeAppBar(BuildContext context, bool isLeading, TabControll
               Icons.arrow_back,
               color: Colors.black,
             ),
-          )
-        : null,
+          ),
     bottom: TabBar(tabs: [
       Tab(
         icon: Icon(Icons.assignment),

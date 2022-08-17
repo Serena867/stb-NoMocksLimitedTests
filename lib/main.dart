@@ -35,6 +35,9 @@ import 'domain_layer/value_objects/user/user_last_name.dart';
 
 //TODO: Groups, who paid, who owes, email notifications
 //TODO: Mockito causing exit code 78 with build_runner - fix
+//TODO: Redo all app bars
+//TODO: Redo navigation using proper routing
+//TODO: Fix back arrow in nav bars. Showing no longer valid states, pop issues outside of stack
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

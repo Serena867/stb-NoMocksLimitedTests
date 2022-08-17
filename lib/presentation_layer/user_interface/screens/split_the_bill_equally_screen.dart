@@ -37,7 +37,7 @@ class _SplitTheBillEquallyScreenState extends State<SplitTheBillEquallyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homeAppBar(context, true, null),
+      appBar: homeAppBar(context, null),
       body: _BuildBody(
           billID: widget.billInputID,
           billController: getIt<BillController>(),

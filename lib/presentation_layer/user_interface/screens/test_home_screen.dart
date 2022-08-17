@@ -12,9 +12,10 @@ import 'home_screen.dart';
 import 'new_bill_screen.dart';
 
 class TestHomeScreen extends StatefulWidget {
-  const TestHomeScreen({Key? key, required this.screenIndex}) : super(key: key);
+  const TestHomeScreen({Key? key, required this.screenIndex, this.tabIndex = 0}) : super(key: key);
 
   final int screenIndex;
+  final int tabIndex;
 
   @override
   State<TestHomeScreen> createState() => _TestHomeScreenState();
@@ -22,20 +23,20 @@ class TestHomeScreen extends StatefulWidget {
 
 class _TestHomeScreenState extends State<TestHomeScreen> {
   int _selectedScreen = 0;
+  var _screenOptions = [];
 
-
-  final _screenOptions = [
-    HomeScreen(billController: getIt<BillController>()),
-    UsersScreen(userController: getIt<UserController>()),
-    GroupsScreen(groupController: getIt<GroupController>()),
-    NewBillScreen(
-        billController: getIt<BillController>(),
-        entityFactory: getIt<IEntityFactory>()),
-    Settings(),
-  ];
-
+  @override
   void initState() {
     _selectedScreen = widget.screenIndex;
+    _screenOptions = [
+      HomeScreen(defaultTab: widget.tabIndex),
+      UsersScreen(userController: getIt<UserController>()),
+      GroupsScreen(groupController: getIt<GroupController>()),
+      NewBillScreen(
+          billController: getIt<BillController>(),
+          entityFactory: getIt<IEntityFactory>()),
+      const Settings(),
+    ];
     super.initState();
   }
 

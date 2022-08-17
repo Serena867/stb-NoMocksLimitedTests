@@ -187,7 +187,7 @@ class _NewUserScreenState extends State<NewUserScreen> {
         _showSuccessfulUserCreation();
         Navigator.of(context) //TODO: Adjust MaterialPageRoute so this isn't at the bottom of the nav stack on initial user creation
             .push(MaterialPageRoute(builder: (context) =>
-            HomeScreen(billController: getIt<BillController>(),)));
+            HomeScreen()));
       }
     } else {
       _showFailedUserCreation();

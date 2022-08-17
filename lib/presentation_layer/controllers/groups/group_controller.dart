@@ -27,8 +27,8 @@ class GroupController {
     return _groupService.addGroup(group);
   }
 
-  deleteGroup(BillGroup group) {
-    return _groupService.deleteGroup(group.groupID);
+  deleteGroup(String groupID) {
+    return _groupService.deleteGroup(groupID);
   }
 
 }

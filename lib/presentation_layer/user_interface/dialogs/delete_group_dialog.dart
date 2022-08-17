@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
-import 'package:split_the_bill/presentation_layer/user_interface/screens/home_screen.dart';
+import 'package:split_the_bill/presentation_layer/controllers/groups/group_controller.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/screens/test_home_screen.dart';
 
-class DeleteBillDialog extends StatefulWidget {
-  const DeleteBillDialog({Key? key, required this.billID, required this.billController}) : super(key: key);
+class DeleteGroupDialog extends StatefulWidget {
+  const DeleteGroupDialog(
+      {Key? key, required this.groupID, required this.groupController})
+      : super(key: key);
 
-  final String billID;
-  final BillController billController;
+  final String groupID;
+  final GroupController groupController;
 
   @override
-  State<DeleteBillDialog> createState() => _DeleteBillDialogState();
+  State<DeleteGroupDialog> createState() => _DeleteGroupDialogState();
 }
 
-class _DeleteBillDialogState extends State<DeleteBillDialog> {
-
+class _DeleteGroupDialogState extends State<DeleteGroupDialog> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -33,9 +34,9 @@ class _DeleteBillDialogState extends State<DeleteBillDialog> {
           style: TextButton.styleFrom(
               backgroundColor: Colors.red, primary: Colors.white),
           onPressed: () async {
-            await widget.billController.deleteBill(widget.billID);
+            await widget.groupController.deleteGroup(widget.groupID);
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                .push(MaterialPageRoute(builder: (context) => const TestHomeScreen(screenIndex: 0, tabIndex: 1,)));
             setState(() {
               //_getUsers();
             });
