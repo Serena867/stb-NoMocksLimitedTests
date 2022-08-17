@@ -69,7 +69,7 @@ PreferredSizeWidget generalAppBar(BuildContext context, {bool jumpToHome = false
       ),
     ) : ElevatedButton(
       //TODO: Adjust navigation (probably with pushReplacement)
-      onPressed: () => Navigator.pop(context),
+      onPressed: () => Navigator.of(context).maybePop(),
       style: ElevatedButton.styleFrom(
         primary: Colors.transparent,
         elevation: 0.0,

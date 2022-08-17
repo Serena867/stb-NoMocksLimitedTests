@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-
 //TODO: add value object for groupName
-
+//TODO: Move typedef to non-DTO
 typedef BillID = String;
 
 class BillGroupDTO {
@@ -21,17 +20,19 @@ class BillGroupDTO {
   //TODO: Fix to/from json
 
   factory BillGroupDTO.fromJson(Map<String, dynamic> json) => BillGroupDTO(
-      groupID: json['groupID'], groupName: json['groupName'], bills: []);
+        groupID: json["groupID"],
+        groupName: json["groupName"],
+        bills: List<String>.from(jsonDecode(json["bills"]).map((data) => (data))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "groupID": groupID,
-    "groupName": groupName,
-    //"bills": json.encode(List<dynamic>.from(bills.map((data) => data.toJson()))),
-  };
+        "groupID": groupID,
+        "groupName": groupName,
+        "bills": jsonEncode(List<dynamic>.from(bills.map((data) => data))),
+      };
 
   @override
   String toString() {
     return 'billGroup{groupID: $groupID, groupName: $groupName, bills: $bills}';
   }
-
 }

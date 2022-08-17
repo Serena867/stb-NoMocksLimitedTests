@@ -35,7 +35,7 @@ class _DeleteUserDialogState extends State<DeleteUserDialog> {
           onPressed: () async {
             await widget.userController.deleteUser(widget.userID);
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const UsersScreen()));
+                .push(MaterialPageRoute(builder: (context) => UsersScreen(userController: widget.userController,)));
             setState(() {
               //_getUsers();
             });

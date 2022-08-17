@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:split_the_bill/presentation_layer/controllers/groups/group_controller.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/widgets/general_app_bar.dart';
-
-import '../../../dependency_injection/injection.dart';
 import '../../../domain_layer/entities/bill_group.dart';
 
 class GroupsScreen extends StatefulWidget {
-  const GroupsScreen({Key? key}) : super(key: key);
+  const GroupsScreen({Key? key, required this.groupController}) : super(key: key);
+
+  final GroupController groupController;
 
   @override
   State<GroupsScreen> createState() => _GroupsScreenState();
@@ -19,7 +19,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
         backgroundColor: Colors.white,
         appBar: generalAppBar(context),
         body: LayoutBuilder(builder: (context, constraints) {
-          return OnlyLayoutSoFar(groupController: getIt<GroupController>());
+          return OnlyLayoutSoFar(groupController: widget.groupController);
         }));
   }
 }
@@ -73,7 +73,7 @@ class _OnlyLayoutSoFarState extends State<OnlyLayoutSoFar> {
                   }),
             );
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         });
   }

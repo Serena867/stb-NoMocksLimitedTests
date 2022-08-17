@@ -150,7 +150,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
       if (result > 0) {
         _showSuccessfulUserCreation();
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const UsersScreen()));
+            MaterialPageRoute(builder: (context) => UsersScreen(userController: widget.userController)));
       }
     } else {
       _showFailedUserCreation();

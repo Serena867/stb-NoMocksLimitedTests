@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:split_the_bill/presentation_layer/controllers/groups/group_controller.dart';
+import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/settings.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/users_screen.dart';
 
@@ -24,8 +26,8 @@ class _TestHomeScreenState extends State<TestHomeScreen> {
 
   final _screenOptions = [
     HomeScreen(billController: getIt<BillController>()),
-    UsersScreen(),
-    GroupsScreen(),
+    UsersScreen(userController: getIt<UserController>()),
+    GroupsScreen(groupController: getIt<GroupController>()),
     NewBillScreen(
         billController: getIt<BillController>(),
         entityFactory: getIt<IEntityFactory>()),

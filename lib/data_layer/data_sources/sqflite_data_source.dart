@@ -25,7 +25,7 @@ class SqfliteDatasource implements IDatasource {
     if (maps.isEmpty) {
       return [];
     }
-    for (var data in maps){
+    for (var data in maps) {
       BillDTO bill = BillDTO.fromJson(data);
       bills.add(bill);
     }
@@ -93,7 +93,7 @@ class SqfliteDatasource implements IDatasource {
     if (maps.isEmpty) {
       return [];
     }
-    for (var data in maps){
+    for (var data in maps) {
       ItemDTO item = ItemDTO.fromJson(data);
       items.add(item);
     }
@@ -156,7 +156,8 @@ class SqfliteDatasource implements IDatasource {
 
   @override
   addGroup(BillGroupDTO groupModel) async {
-    return await _database.insert('groups', groupModel.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
+    return await _database.insert('groups', groupModel.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   @override
@@ -175,10 +176,11 @@ class SqfliteDatasource implements IDatasource {
 
   @override
   Future<BillGroupDTO> readGroupById(groupID) async {
-    var maps =
-    await _database.query('groups', where: 'groupID=?', whereArgs: [groupID]);
+    var maps = await _database
+        .query('groups', where: 'groupID=?', whereArgs: [groupID]);
     return BillGroupDTO.fromJson(maps.first);
   }
+
   @override
   updateGroup(BillGroupDTO groupModel) async {
     return await _database.update('groups', groupModel.toJson(),
@@ -190,6 +192,4 @@ class SqfliteDatasource implements IDatasource {
     return await _database
         .rawDelete('${'DELETE FROM groups WHERE groupID' '=\'' + groupID}\'');
   }
-
-
 }

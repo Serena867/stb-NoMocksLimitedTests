@@ -6,10 +6,11 @@ import 'package:split_the_bill/presentation_layer/user_interface/widgets/users_a
 import '../../../dependency_injection/injection.dart';
 import '../../../domain_layer/entities/user.dart';
 import '../dialogs/delete_user_dialog.dart';
-import '../widgets/bottom_app_bar.dart';
 
 class UsersScreen extends StatefulWidget {
-  const UsersScreen({Key? key}) : super(key: key);
+  const UsersScreen({Key? key, required this.userController}) : super(key: key);
+
+  final UserController userController;
 
   @override
   State<UsersScreen> createState() => _UsersScreenState();
@@ -30,9 +31,9 @@ class _UsersScreenState extends State<UsersScreen> {
       appBar: userAppBar(context, true),
       body: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth > 400) {
-          return WideLayout(userController: getIt<UserController>());
+          return WideLayout(userController: widget.userController);
         } else {
-          return NarrowLayout(userController: getIt<UserController>());
+          return NarrowLayout(userController: widget.userController);
         }
       }),
     );
