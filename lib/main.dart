@@ -2,15 +2,18 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:split_the_bill/application_layer/services/bill_service.dart';
+import 'package:split_the_bill/application_layer/services/group_service.dart';
 import 'package:split_the_bill/application_layer/services/item_service.dart';
 import 'package:split_the_bill/application_layer/services/user_service.dart';
 import 'package:split_the_bill/domain_layer/entities/bill.dart';
+import 'package:split_the_bill/domain_layer/entities/bill_group.dart';
 import 'package:split_the_bill/domain_layer/entities/item.dart';
 import 'package:split_the_bill/domain_layer/factories/IEntityFactory.dart';
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_date.dart';
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_type.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/bill/bill_item_controller.dart';
+import 'package:split_the_bill/presentation_layer/controllers/groups/group_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/item/item_controller.dart';
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/home_screen.dart';
@@ -30,7 +33,7 @@ import 'domain_layer/value_objects/user/user_first_name.dart';
 import 'domain_layer/value_objects/user/user_last_name.dart';
 
 //TODO: Groups, who paid, who owes, email notifications
-
+//TODO: Mockito causing exit code 78 with build_runner - fix
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -116,6 +119,13 @@ void main() async {
   ItemController itemController =
       ItemController(itemService: getIt<ItemService>());
   itemController.addItem(item1);
+
+  BillGroup group1 = BillGroup(
+      groupID: const Uuid().v1(),
+      groupName: 'Test Group 1',
+      bills: [bill1.billID]);
+  GroupController groupController = GroupController(groupService: getIt<GroupService>());
+  groupController.addGroup(group1);
 
   BillItemController billItemController =
       BillItemController(billService: getIt<BillService>());

@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:split_the_bill/presentation_layer/controllers/user/user_controller.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/screens/split_the_bill_unequally_screen.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/widgets/bottom_app_bar.dart';
+import 'package:split_the_bill/presentation_layer/user_interface/widgets/general_app_bar.dart';
 import 'package:split_the_bill/presentation_layer/user_interface/widgets/users_app_bar.dart';
 import '../../../dependency_injection/injection.dart';
 import '../../../domain_layer/entities/bill.dart';
@@ -24,7 +25,7 @@ class _IndividualUserScreenState extends State<IndividualUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: userAppBar(context, true),
+      appBar: generalAppBar(context),
       body: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth > 400) {
           return WideLayout(

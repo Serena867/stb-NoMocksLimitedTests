@@ -20,7 +20,7 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   void initState() {
     super.initState();
-    setState(() {});
+    //setState(() {});
   }
 
   @override

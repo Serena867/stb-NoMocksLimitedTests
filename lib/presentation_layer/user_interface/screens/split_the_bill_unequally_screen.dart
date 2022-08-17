@@ -39,7 +39,7 @@ class _SplitTheBillUnequallyScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: generalAppBar(context),
+      appBar: generalAppBar(context, jumpToHome: true),
       body: _BuildBody(
           billID: widget.billInputID,
           billController: getIt<BillController>(),
