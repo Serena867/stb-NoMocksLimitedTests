@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_date.dart';
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_discount.dart';
+import 'package:split_the_bill/domain_layer/value_objects/bill/groups/group_name.dart';
 import 'package:split_the_bill/domain_layer/value_objects/item/item_name.dart';
 import 'package:split_the_bill/domain_layer/value_objects/user/user_first_name.dart';
 import 'package:split_the_bill/domain_layer/value_objects/user/user_last_name.dart';
@@ -74,7 +75,7 @@ class EntityFactory implements IEntityFactory {
   @override
   BillGroup newGroup(
       {required String groupID,
-      required String groupName,
+      required GroupName groupName,
       required List<BillID> bills}) {
     return BillGroup(groupID: groupID, groupName: groupName, bills: bills);
   }

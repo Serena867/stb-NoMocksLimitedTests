@@ -4,7 +4,8 @@ import 'package:split_the_bill/presentation_layer/user_interface/widgets/general
 import '../../../domain_layer/entities/bill_group.dart';
 
 class GroupsScreen extends StatefulWidget {
-  const GroupsScreen({Key? key, required this.groupController}) : super(key: key);
+  const GroupsScreen({Key? key, required this.groupController})
+      : super(key: key);
 
   final GroupController groupController;
 
@@ -63,7 +64,8 @@ class _OnlyLayoutSoFarState extends State<OnlyLayoutSoFar> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Flexible(
-                                    child: Text(snapshot.data[index].groupName))
+                                    child: Text(snapshot
+                                        .data[index].groupName.groupName))
                               ],
                             ),
                           ),

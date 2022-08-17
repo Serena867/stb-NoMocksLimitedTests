@@ -1,12 +1,13 @@
 import 'dart:convert';
+import 'package:split_the_bill/domain_layer/value_objects/bill/groups/group_name.dart';
+
+import '../../domain_layer/entities/bill_group.dart';
 
 //TODO: add value object for groupName
-//TODO: Move typedef to non-DTO
-typedef BillID = String;
 
 class BillGroupDTO {
   final String groupID;
-  final String groupName;
+  final GroupName groupName;
   final List<BillID> bills;
 
   BillGroupDTO(
@@ -17,17 +18,15 @@ class BillGroupDTO {
 
   String toRawJson() => json.encode(toJson());
 
-  //TODO: Fix to/from json
-
   factory BillGroupDTO.fromJson(Map<String, dynamic> json) => BillGroupDTO(
         groupID: json["groupID"],
-        groupName: json["groupName"],
+        groupName: GroupName.fromRawJson(json["groupName"]),
         bills: List<String>.from(jsonDecode(json["bills"]).map((data) => (data))),
       );
 
   Map<String, dynamic> toJson() => {
         "groupID": groupID,
-        "groupName": groupName,
+        "groupName": groupName.toRawJson(),
         "bills": jsonEncode(List<dynamic>.from(bills.map((data) => data))),
       };
 

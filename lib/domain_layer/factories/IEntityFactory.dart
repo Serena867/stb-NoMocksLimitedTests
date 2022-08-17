@@ -1,5 +1,6 @@
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_date.dart';
 import 'package:split_the_bill/domain_layer/value_objects/bill/bill_discount.dart';
+import 'package:split_the_bill/domain_layer/value_objects/bill/groups/group_name.dart';
 import '../../data_layer/models/bill_group_dto.dart';
 import '../entities/bill.dart';
 import '../entities/bill_group.dart';
@@ -44,6 +45,6 @@ abstract class IEntityFactory {
 
   BillGroup newGroup(
       {required String groupID,
-        required String groupName,
+        required GroupName groupName,
         required List<BillID> bills});
 }

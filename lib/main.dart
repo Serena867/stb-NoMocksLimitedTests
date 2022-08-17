@@ -27,6 +27,7 @@ import 'domain_layer/value_objects/bill/bill_discount.dart';
 import 'domain_layer/value_objects/bill/bill_extra_fees.dart';
 import 'domain_layer/value_objects/bill/bill_name.dart';
 import 'domain_layer/value_objects/bill/bill_tax.dart';
+import 'domain_layer/value_objects/bill/groups/group_name.dart';
 import 'domain_layer/value_objects/item/item_name.dart';
 import 'domain_layer/value_objects/user/user_email.dart';
 import 'domain_layer/value_objects/user/user_first_name.dart';
@@ -122,7 +123,7 @@ void main() async {
 
   BillGroup group1 = BillGroup(
       groupID: const Uuid().v1(),
-      groupName: 'Test Group 1',
+      groupName: GroupName.create('Test group 1'),
       bills: [bill1.billID]);
   GroupController groupController = GroupController(groupService: getIt<GroupService>());
   groupController.addGroup(group1);

@@ -9,7 +9,7 @@ class BillName extends Equatable {
 
   static BillName create(String billName) {
     if (billName.isEmpty) {
-      throw DomainException('Bill name is empty or null');
+      throw DomainException("Error: Bill name can't be empty or null");
     } else {
       return BillName._(billName: billName);
     }

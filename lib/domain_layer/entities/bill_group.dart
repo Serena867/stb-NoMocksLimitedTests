@@ -1,10 +1,13 @@
 import 'package:split_the_bill/data_layer/models/bill_group_dto.dart';
 import 'package:split_the_bill/domain_layer/domain_exception.dart';
+import 'package:split_the_bill/domain_layer/value_objects/bill/groups/group_name.dart';
 import 'bill.dart';
+
+typedef BillID = String;
 
 class BillGroup {
   final String groupID;
-  final String groupName;
+  final GroupName groupName;
   final List<BillID> bills;
 
   const BillGroup(
